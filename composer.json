@@ -1,0 +1,17 @@
+{
+    "name": "wqy/rsa",
+    "description": "使用openssl rsa函数分组处理数据",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Wqy\\Rsa\\": "src"
+        }
+    },
+    "require": {
+        "ext-openssl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
