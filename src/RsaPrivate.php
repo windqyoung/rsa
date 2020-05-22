@@ -33,7 +33,7 @@ class RsaPrivate
         $blockSize = $this->getKeyBits() / 8 - 11;
         // 需要分块
         return $this->chunkRsa($data, $blockSize, function ($blockData) {
-            $enRs = openssl_private_encrypt($blockData, $encrypted, $this->key);
+            $enRs = openssl_private_encrypt($blockData, $encrypted, $this->key, OPENSSL_PKCS1_PADDING);
 
             // 加密失败
             if (! $enRs) {
@@ -50,7 +50,7 @@ class RsaPrivate
         // 解密, 块大小为 bits / 8
         $blockSize = $this->getKeyBits() / 8;
         return $this->chunkRsa($data, $blockSize, function ($blockData) {
-            $deRs = openssl_private_decrypt($blockData, $decrypted, $this->key);
+            $deRs = openssl_private_decrypt($blockData, $decrypted, $this->key, OPENSSL_PKCS1_PADDING);
 
             // 解密失败
             if (! $deRs) {

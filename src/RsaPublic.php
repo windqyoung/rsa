@@ -28,7 +28,7 @@ class RsaPublic
         $blockSize = $this->getKeyBits() / 8 - 11;
         // 需要分块
         return $this->chunkRsa($data, $blockSize, function ($blockData) {
-            $enRs = openssl_public_encrypt($blockData, $encrypted, $this->key);
+            $enRs = openssl_public_encrypt($blockData, $encrypted, $this->key, OPENSSL_PKCS1_PADDING);
 
             // 加密失败
             if (! $enRs) {
@@ -46,7 +46,7 @@ class RsaPublic
         $blockSize = $this->getKeyBits() / 8;
         // 如果是2048位, 按256字节分块
         return $this->chunkRsa($data, $blockSize, function ($blockData) {
-            $deRs = openssl_public_decrypt($blockData, $decrypted, $this->key);
+            $deRs = openssl_public_decrypt($blockData, $decrypted, $this->key, OPENSSL_PKCS1_PADDING);
             // 解密失败
             if (! $deRs) {
                 $this->setErrorString(openssl_error_string());
