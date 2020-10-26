@@ -1,5 +1,5 @@
 {
-    "name": "wqy/rsa",
+    "name": "windqyoung/rsa",
     "description": "使用openssl rsa函数分组处理数据",
     "type": "library",
     "license": "MIT",
